@@ -12,8 +12,11 @@ This config is based on [this](https://github.com/LunarVim/nvim-basic-ide) start
 
 Install Neovim > 0.8 and copy the `nvim` folder to `~/.config/`.
 
-([Appimages](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) are a convenient way to install Neovim:
+[Appimages](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) are a convenient way to install Neovim. Here's a quick script to set this up:
 ```bash
+# WARNING: will remove the existing nvim.appimage file in TGT_DIR if present
+# Note: TGT_DIR should be in your PATH
+
 TGT_DIR="$HOME/.local/bin/"
 NVIM_VERSION="v0.8.1"
 DL_URL=https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}
