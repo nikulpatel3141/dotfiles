@@ -1,0 +1,18 @@
+tap "homebrew/bundle"
+
+brew "fish"
+
+brew "tmux"
+brew "zellij"
+
+brew "helix"
+brew "neovim"
+
+brew "ripgrep"
+brew "fzf"
+
+brew "pyenv"
+
+brew "fnm"
+brew "pnpm"
+
