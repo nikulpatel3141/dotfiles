@@ -2,6 +2,10 @@ fish_config theme choose "Dracula"
 
 set -gx TERM xterm-256color
 
+if type -q gitui
+    alias gi "gitui"
+end
+
 if type -q exa
   alias l "exa"
   alias ll "exa -l"

@@ -1,10 +1,10 @@
 tap "homebrew/bundle"
 
-brew "tmux"
-brew "zellij"
-
 brew "helix"
 brew "neovim"
+
+brew "gh"
+brew "gitui"
 
 brew "ripgrep"
 brew "fzf"

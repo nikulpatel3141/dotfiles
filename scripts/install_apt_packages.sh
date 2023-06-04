@@ -8,6 +8,7 @@ sudo apt-get update && sudo apt-get install -y \
   git \
   htop \
   python3-full \
-  curl
+  curl \
+  byobu
 
 chsh -s $(which fish)
