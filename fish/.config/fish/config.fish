@@ -1,3 +1,4 @@
+fish_config theme choose "Dracula"
 
 set -gx TERM xterm-256color
 
@@ -8,6 +9,7 @@ if type -q exa
 end
 
 fish_add_path ~/.local/bin
+fish_add_path ~/.cargo/bin
 fish_add_path /home/linuxbrew/.linuxbrew/bin
 
 set -gx EDITOR nvim
