@@ -11,4 +11,10 @@ sudo apt-get update && sudo apt-get install -y \
   curl \
   byobu
 
-chsh -s $(which fish)
+if [[ ! $SHELL == *fish ]]
+then
+  echo "Changing user shell to fish"
+  chsh -s $(which fish)
+else
+  echo "User shell is already fish"
+fi
