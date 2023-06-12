@@ -18,6 +18,8 @@ fish_add_path /home/linuxbrew/.linuxbrew/bin
 
 set -gx EDITOR nvim
 
+fish_config theme choose Dracula
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
