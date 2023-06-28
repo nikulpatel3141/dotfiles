@@ -1,0 +1,8 @@
+
+theme = "monokai_pro_octagon"
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true

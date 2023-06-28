@@ -1,0 +1,4 @@
+ipython
+python-lsp-server[all]
+python-lsp-ruff
+pylsp-mypy

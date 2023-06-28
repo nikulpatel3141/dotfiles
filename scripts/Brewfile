@@ -1,0 +1,17 @@
+tap "homebrew/bundle"
+
+brew "helix"
+brew "neovim"
+
+brew "gh"
+brew "gitui"
+
+brew "ripgrep"
+brew "fzf"
+brew "exa"
+
+brew "pyenv"
+
+brew "fnm"
+brew "pnpm"
+
