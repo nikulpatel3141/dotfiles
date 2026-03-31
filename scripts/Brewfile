@@ -10,8 +10,8 @@ brew "ripgrep"
 brew "fzf"
 brew "exa"
 
-brew "pyenv"
-
 brew "fnm"
 brew "pnpm"
 
+brew "restic"
+brew "ghorg"

@@ -18,3 +18,10 @@ then
 else
   echo "User shell is already fish"
 fi
+
+if ! flatpak list | grep -q dev.zed.Zed; then
+  echo "Installing Zed editor..."
+  flatpak install flathub dev.zed.Zed -y
+else
+  echo "Zed already installed"
+fi

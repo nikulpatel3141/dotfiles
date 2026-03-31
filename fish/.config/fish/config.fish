@@ -20,8 +20,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# uv
-fish_add_path "/home/npatel/.local/bin"
-
 # intellij idea
 fish_add_path "/home/npatel/.jdks/openjdk-24.0.1/bin/"
+fish_add_path "/home/npatel/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/plugins/maven/lib/maven3/bin/"
