@@ -1,0 +1,12 @@
+{
+  "theme": "Tokyo Night",
+  "buffer_font_size": 14,
+  "ui_font_size": 14,
+  "format_on_save": "on",
+  "soft_wrap": "editor_width",
+  "terminal": {
+    "shell": {
+      "program": "fish"
+    }
+  }
+}

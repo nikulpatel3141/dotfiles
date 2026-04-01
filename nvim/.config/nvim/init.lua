@@ -1,11 +1,3 @@
-require "user.plugins"
-require "user.impatient"
-require "user.coc"
-require "user.telescope"
-require "user.treesitter"
-require "user.toggleterm"
-require "user.lualine"
-require "user.indentline"
-require "user.keymaps"
-require "user.options"
-require "user.colorscheme"
+require("user.options")
+require("user.keymaps")
+require("user.plugins")

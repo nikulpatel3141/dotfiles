@@ -8,7 +8,7 @@ brew "gitui"
 
 brew "ripgrep"
 brew "fzf"
-brew "exa"
+brew "eza"
 
 brew "fnm"
 brew "pnpm"
