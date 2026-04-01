@@ -65,11 +65,20 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
--- Python (pylsp installed in the uv venv by install_uv.sh)
+-- Locate pylsp: prefer PATH (activated venv / system install), then scan ~/.venvs/*
+local function find_pylsp()
+  local in_path = vim.fn.exepath("pylsp")
+  if in_path ~= "" then return in_path end
+  local found = vim.fn.glob(vim.fn.expand("~/.venvs/*/bin/pylsp"), false, true)
+  if #found > 0 then return found[1] end
+  return "pylsp"
+end
+
+-- Python
 lspconfig.pylsp.setup({
   on_attach    = on_attach,
   capabilities = capabilities,
-  cmd          = { vim.fn.expand("~/.venvs/venv14/bin/pylsp") },
+  cmd          = { find_pylsp() },
   settings = {
     pylsp = {
       plugins = {

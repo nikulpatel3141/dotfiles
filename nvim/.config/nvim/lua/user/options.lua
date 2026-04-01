@@ -45,18 +45,9 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
--- WSL2: disable cursor blending/animations and use win32yank for clipboard
+-- WSL2: disable cursor animations to eliminate escape-seq round-trips to Windows terminal
 if vim.fn.has("wsl") == 1 then
   vim.opt.pumblend  = 0   -- no popup-menu transparency (avoids redraw flicker)
   vim.opt.winblend  = 0   -- no floating-window transparency
-  vim.opt.guicursor = ""  -- disable cursor shape changes (eliminates escape-seq round-trips)
-  -- Use win32yank if available; falls back to xclip/xsel otherwise
-  if vim.fn.executable("win32yank.exe") == 1 then
-    vim.g.clipboard = {
-      name  = "win32yank",
-      copy  = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
-      paste = { ["+"] = "win32yank.exe -o --lf",   ["*"] = "win32yank.exe -o --lf"   },
-      cache_enabled = 0,
-    }
-  end
+  vim.opt.guicursor = ""  -- disable cursor shape changes on mode switch
 end

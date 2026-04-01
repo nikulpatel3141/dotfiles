@@ -10,7 +10,8 @@ sudo apt-get update && sudo apt-get install -y \
   python3-full \
   curl \
   byobu \
-  clangd
+  clangd \
+  stow
 
 if [[ ! $SHELL == *fish ]]
 then
