@@ -20,7 +20,7 @@ bash scripts/install_apt_packages.sh
 bash scripts/install_brew_packages.sh
 
 # 3. Symlink dotfiles
-stow byobu fish helix ipython nvim zed
+stow byobu fish git helix ipython nvim zed
 
 # 4. Rust + rust-analyzer
 bash scripts/install_rust.sh
@@ -34,11 +34,13 @@ After step 3, install fish plugins:
 fisher update
 ```
 
+> Update the email in `git/.gitconfig` before stowing — find your noreply address at github.com/settings/emails.
+
 ## Stow
 
 Symlink all packages at once from the repo root:
 ```sh
-stow byobu fish helix ipython nvim zed
+stow byobu fish git helix ipython nvim zed
 ```
 
 Or symlink / remove a single package:
@@ -93,6 +95,54 @@ Replaces shell history with a searchable SQLite database.
 |----------|--------|
 | `Ctrl+R` | Fuzzy-search full history with context (dir, exit code, duration) |
 | `Up` arrow | Search history filtered to the current command prefix |
+
+### direnv
+
+Auto-loads `.envrc` files when you `cd` into a directory. Complements the global `~/.venvs/venv14` activation — use it for project-specific overrides (extra env vars, a project-local venv, secrets).
+
+Create a `.envrc` in any project directory:
+```sh
+# activate a project-specific venv
+source .venv/bin/activate
+
+# or set project env vars
+export DATABASE_URL=postgres://localhost/mydb
+export DEBUG=1
+```
+
+Then allow it once:
+```sh
+direnv allow
+```
+
+direnv will load/unload it automatically as you enter/leave the directory.
+
+---
+
+## Git
+
+Config in `git/.gitconfig`. Uses `delta` for all diffs.
+
+### Aliases
+
+| Alias | Expands to | Notes |
+|-------|-----------|-------|
+| `git st` | `status -sb` | Short status with branch |
+| `git co` | `checkout` | |
+| `git br` | `branch -vv` | Branches with tracking info |
+| `git lg` | `log --oneline --graph --decorate --all` | Pretty graph of all branches |
+| `git last` | `log -1 HEAD --stat` | Last commit + files changed |
+| `git unstage` | `restore --staged` | Unstage a file |
+| `git aliases` | `config --get-regexp alias` | List all aliases |
+
+### delta
+
+`delta` is the default pager for all git output. Key features:
+
+- Syntax-highlighted diffs with line numbers
+- Side-by-side view by default
+- Press `n` / `N` to jump between diff sections
+- Merge conflicts rendered with `diff3` style
 
 ---
 
@@ -175,7 +225,7 @@ Config in `zed/.config/zed/`. Theme: Tokyo Night. Terminal shell: fish. Format o
 
 ### delta
 
-Syntax-highlighted diffs for `git diff`, `git show`, `git log -p`. Configured via `~/.gitconfig` (see git stow package once added).
+Syntax-highlighted diffs for `git diff`, `git show`, `git log -p`. Configured as the default pager in `git/.gitconfig`.
 
 ### fd
 

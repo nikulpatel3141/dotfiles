@@ -11,7 +11,7 @@ bash "$DOTFILES_DIR/scripts/install_brew_packages.sh"
 
 echo "==> Symlinking dotfiles with stow..."
 cd "$DOTFILES_DIR"
-stow byobu fish helix ipython nvim zed
+stow byobu fish git helix ipython nvim zed
 
 echo "==> Installing Rust..."
 bash "$DOTFILES_DIR/scripts/install_rust.sh"
