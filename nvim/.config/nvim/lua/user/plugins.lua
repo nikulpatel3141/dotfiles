@@ -105,6 +105,24 @@ require("lazy").setup({
     end,
   },
 
+  -- Git signs: hunk navigation, inline blame, stage/reset hunks
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("user.gitsigns")
+    end,
+  },
+
+  -- Which-key: shows available keybindings after leader pause
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("user.whichkey")
+    end,
+  },
+
   -- LaTeX (only loads for .tex files)
   { "lervag/vimtex", ft = "tex" },
 }, {

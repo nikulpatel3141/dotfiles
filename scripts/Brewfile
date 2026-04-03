@@ -1,14 +1,18 @@
-tap "homebrew/bundle"
-
 brew "helix"
 brew "neovim"
+brew "lazygit"
 
 brew "gh"
 brew "gitui"
+brew "git-delta"
 
 brew "ripgrep"
 brew "fzf"
+brew "fd"
+brew "bat"
 brew "eza"
+brew "zoxide"
+brew "atuin"
 
 brew "fnm"
 brew "pnpm"
