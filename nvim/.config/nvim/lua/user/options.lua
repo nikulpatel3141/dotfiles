@@ -16,7 +16,7 @@ local options = {
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   swapfile = false,                        -- creates a swapfile
-  -- termguicolors = true,                    -- set term gui colors (most terminals support this)
+  termguicolors = true,                     -- set term gui colors (most terminals support this)
   timeoutlen = 100,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
   updatetime = 300,                        -- faster completion (4000ms default)
@@ -44,3 +44,10 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+
+-- WSL2: disable cursor animations to eliminate escape-seq round-trips to Windows terminal
+if vim.fn.has("wsl") == 1 then
+  vim.opt.pumblend  = 0   -- no popup-menu transparency (avoids redraw flicker)
+  vim.opt.winblend  = 0   -- no floating-window transparency
+  vim.opt.guicursor = ""  -- disable cursor shape changes on mode switch
+end

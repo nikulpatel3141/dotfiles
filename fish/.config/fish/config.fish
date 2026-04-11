@@ -4,10 +4,18 @@ if type -q gitui
     alias gi gitui
 end
 
-if type -q exa
-    alias l exa
-    alias ll "exa -l"
-    alias lla "ll -a"
+if type -q lazygit
+    alias lg lazygit
+end
+
+if type -q eza
+    alias l eza
+    alias ll "eza -l"
+    alias lla "eza -la"
+end
+
+if type -q bat
+    alias cat bat
 end
 
 fish_add_path ~/.local/bin

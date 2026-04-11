@@ -1,0 +1,32 @@
+[user]
+	name  = Nikul Patel
+	email = nikulpatel3141@users.noreply.github.com  # replace with ID+username form from github.com/settings/emails
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate    = true   # n / N to jump between diff sections
+	side-by-side = true
+	line-numbers = true
+
+[diff]
+	colorMoved = default
+
+[merge]
+	conflictstyle = diff3
+
+[alias]
+	st      = status -sb                              # short status with branch
+	co      = checkout
+	br      = branch -vv                              # branches with tracking info
+	lg      = log --oneline --graph --decorate --all  # pretty graph of all branches
+	last    = log -1 HEAD --stat                      # last commit + files changed
+	unstage = restore --staged                        # unstage a file
+	aliases = config --get-regexp alias               # list all aliases
+
+[pull]
+	rebase = false

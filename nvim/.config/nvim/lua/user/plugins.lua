@@ -1,71 +1,138 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+require("lazy").setup({
+  -- Utilities (lazy-loaded, depended on by others)
+  { "nvim-lua/plenary.nvim", lazy = true },
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
+  -- Colorscheme (eager, high priority so it loads before everything else)
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("user.colorscheme")
+    end,
+  },
 
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
+  -- Status line
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("user.lualine")
+    end,
+  },
+
+  -- Terminal
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("user.toggleterm")
+    end,
+  },
+
+  -- Indent guides (ibl v3)
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "BufReadPost",
+    config = function()
+      require("user.indentline")
+    end,
+  },
+
+  -- Fuzzy finder
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help tags" },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    config = function()
+      require("user.telescope")
+    end,
+  },
+
+  -- Syntax highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = "BufReadPost",
+    config = function()
+      require("user.treesitter")
+    end,
+  },
+
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
+  },
+
+  -- Completion + snippets (config loads LSP too so they share capabilities)
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      { "L3MON4D3/LuaSnip", version = "v2.*" },
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      require("user.lsp")
+    end,
+  },
+
+  -- Git signs: hunk navigation, inline blame, stage/reset hunks
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("user.gitsigns")
+    end,
+  },
+
+  -- Which-key: shows available keybindings after leader pause
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("user.whichkey")
+    end,
+  },
+
+  -- LaTeX (only loads for .tex files)
+  { "lervag/vimtex", ft = "tex" },
+}, {
+  performance = {
+    rtp = {
+      -- Disable unused built-in plugins for faster startup
+      disabled_plugins = {
+        "gzip", "matchit", "matchparen", "netrwPlugin",
+        "tarPlugin", "tohtml", "tutor", "zipPlugin",
+      },
+    },
+  },
 })
-
--- Install your plugins here
-return packer.startup(function(use)
-	-- My plugins here
-	use({ "wbthomason/packer.nvim"}) -- Have packer manage itself
-	use({ "nvim-lua/plenary.nvim"}) -- Useful lua functions used by lots of plugins
-	use({ "nvim-lualine/lualine.nvim" })
-	use({ "akinsho/toggleterm.nvim" })
-	use({ 'lewis6991/impatient.nvim' })
-	use({ "lukas-reineke/indent-blankline.nvim" })
-
-	-- Colorschemes
-	use({ "folke/tokyonight.nvim" })
-
-	-- Telescope
-	use({ "nvim-telescope/telescope.nvim" })
-
-	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter" })
-
-	-- Autocompletion
-	use({ "neoclide/coc.nvim", branch = "release" })
-
-	-- LaTeX
-	use({ "lervag/vimtex" })
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
