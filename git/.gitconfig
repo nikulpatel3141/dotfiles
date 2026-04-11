@@ -1,6 +1,14 @@
 [user]
-	name  = Nikul Patel
-	email = nikulpatel3141@users.noreply.github.com  # replace with ID+username form from github.com/settings/emails
+	email = nikulpatel3141@users.noreply.github.com
+	name = Nikul Patel
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 
 [core]
 	pager = delta
