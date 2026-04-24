@@ -11,12 +11,18 @@ bash "$DOTFILES_DIR/scripts/install_brew_packages.sh"
 
 echo "==> Symlinking dotfiles with stow..."
 cd "$DOTFILES_DIR"
-stow byobu fish git helix ipython nvim zed
+if [ -f "$HOME/.claude/settings.json" ] && [ ! -L "$HOME/.claude/settings.json" ]; then
+  mv "$HOME/.claude/settings.json" "$HOME/.claude/settings.json.bak"
+fi
+stow byobu fish git helix ipython nvim zed claude
 
 echo "==> Installing Rust..."
 bash "$DOTFILES_DIR/scripts/install_rust.sh"
 
 echo "==> Installing uv and Python venv..."
 bash "$DOTFILES_DIR/scripts/install_uv.sh"
+
+echo "==> Installing Claude Code, RTK, and LSP servers..."
+bash "$DOTFILES_DIR/scripts/install_claude_dev.sh"
 
 echo "==> Done! Restart your shell."

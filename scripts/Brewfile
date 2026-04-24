@@ -17,6 +17,7 @@ brew "atuin"
 brew "direnv"
 brew "fnm"
 brew "pnpm"
+brew "rtk"
 
 brew "restic"
 brew "ghorg"

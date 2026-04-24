@@ -1,4 +1,34 @@
 {
+  "helix_mode": true,
+  "base_keymap": "Cursor",
+  "agent": {
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^pnpm\\s+tsc(\\s|$)"
+            },
+            {
+              "pattern": "^pnpm\\s+test(\\s|$)"
+            }
+          ]
+        }
+      }
+    },
+    "default_model": {
+      "provider": "vercel_ai_gateway",
+      "model": "zai/glm-5.1",
+      "enable_thinking": false
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "theme": "Tokyo Night",
   "buffer_font_size": 14,
   "ui_font_size": 14,
