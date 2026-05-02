@@ -31,3 +31,10 @@ end
 # intellij idea
 fish_add_path "/home/npatel/.jdks/openjdk-24.0.1/bin/"
 fish_add_path "/home/npatel/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/plugins/maven/lib/maven3/bin/"
+
+# pnpm
+set -gx PNPM_HOME "/home/npatel/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end

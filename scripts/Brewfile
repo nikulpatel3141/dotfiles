@@ -1,3 +1,6 @@
+brew "stow"
+brew "fish"
+
 brew "helix"
 brew "neovim"
 brew "lazygit"

@@ -3,8 +3,15 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "==> Installing apt packages..."
-bash "$DOTFILES_DIR/scripts/install_apt_packages.sh"
+if command -v rpm-ostree &>/dev/null; then
+  echo "==> Installing rpm-ostree packages (Fedora Atomic)..."
+  bash "$DOTFILES_DIR/scripts/install_rpm_ostree_packages.sh"
+elif command -v apt-get &>/dev/null; then
+  echo "==> Installing apt packages..."
+  bash "$DOTFILES_DIR/scripts/install_apt_packages.sh"
+else
+  echo "WARNING: No supported package manager found (apt-get or rpm-ostree). Skipping system packages."
+fi
 
 echo "==> Installing Homebrew and brew packages..."
 bash "$DOTFILES_DIR/scripts/install_brew_packages.sh"
