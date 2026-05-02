@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "ec009610d5d259ec59a6edf0219ef3f7ee4732e5",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    }
+  }
+}
