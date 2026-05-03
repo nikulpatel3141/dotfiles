@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "opencode.nvim": {
+      "rev": "f1f2c08debbf1203f7c747ddcfc236e8cb327e13",
+      "src": "https://github.com/nickjvandyke/opencode.nvim"
+    },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
