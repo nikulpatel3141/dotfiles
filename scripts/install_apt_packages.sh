@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 sudo apt-add-repository ppa:fish-shell/release-3
 

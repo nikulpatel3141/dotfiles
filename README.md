@@ -150,62 +150,15 @@ Config in `git/.gitconfig`. Uses `delta` for all diffs.
 
 ### Neovim
 
-Config in `nvim/.config/nvim/`. Uses [lazy.nvim](https://github.com/folke/lazy.nvim) — plugins install automatically on first launch.
+Config in `nvim/.config/nvim/`. Uses Neovim 0.11+ native `vim.pack.add()` (no plugin manager).
 
-#### LSP
-
-| Language | Server | Notes |
-|----------|--------|-------|
-| C / C++ | `clangd` | Installed via apt |
-| Python | `pylsp` | Auto-detected from `~/.venvs/` or PATH; ruff + mypy enabled |
-
-#### Key mappings
-
-**LSP** (active when a language server attaches):
-
-| Key | Action |
-|-----|--------|
-| `gd` | Go to definition |
-| `gy` | Go to type definition |
-| `gi` | Go to implementation |
-| `gr` | List references |
-| `K` | Hover documentation |
-| `<leader>rn` | Rename symbol |
-| `<leader>ca` | Code action |
-| `<leader>f` | Format buffer |
-| `[g` / `]g` | Previous / next diagnostic |
-
-**Telescope** (fuzzy finder):
+Only plugin: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) (with plenary.nvim).
 
 | Key | Action |
 |-----|--------|
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
-| `<leader>fb` | Open buffers |
-| `<leader>fh` | Help tags |
-
-**Git (gitsigns)**:
-
-| Key | Action |
-|-----|--------|
-| `]h` / `[h` | Next / previous hunk |
-| `<leader>hs` | Stage hunk (also works in visual mode) |
-| `<leader>hr` | Reset hunk (also works in visual mode) |
-| `<leader>hu` | Undo stage hunk |
-| `<leader>hp` | Preview hunk diff |
-| `<leader>gb` | Toggle inline line blame |
-| `<leader>hd` | Diff this file |
-| `<leader>gg` | Open lazygit (floating terminal) |
-
-**Terminal** (`toggleterm`):
-
-| Key | Action |
-|-----|--------|
-| `Ctrl+\` | Toggle floating terminal |
-| `<leader>gg` | Open lazygit |
-| `jk` or `Esc` | Exit terminal insert mode |
-
-**which-key** shows all `<leader>` bindings automatically after a short pause.
+| `<leader>fb` | Buffers |
 
 ### Helix
 
